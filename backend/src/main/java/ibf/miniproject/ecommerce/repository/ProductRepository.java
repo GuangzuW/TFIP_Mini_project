@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import ibf.miniproject.ecommerce.model.Product;
 @Repository
-public class ProductRepository {
+public class ProductRepository{
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -32,7 +31,6 @@ public class ProductRepository {
     public List<Product> findAll() {
         return jdbcTemplate.query(SELECT_SQL, BeanPropertyRowMapper.newInstance(Product.class));
     }
-
     public Product findById(Integer id){
         return jdbcTemplate.queryForObject(SELECTBYID_SQL, BeanPropertyRowMapper.newInstance(Product.class), id);
     }

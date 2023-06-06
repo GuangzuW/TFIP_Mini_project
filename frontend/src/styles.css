@@ -134,7 +134,7 @@ aside.menu-sidebar.d-none.d-lg-block.clr{
  */
 
 .header-desktop{
-    background:#0da8e4;
+    background:#c70de4;
     -webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     -moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
     box-shadow:0 2px 5px 0 rgba(0,0,0,.1);
@@ -736,7 +736,7 @@ table.table.table-bordered th{
 
  .btn-info{
     color:#fff;
-    background-color:#0da8e4!important;
+    background-color:#e4a30d!important;
     border-color:#0da8e4!important
 }
 a.primary-btn{
@@ -744,13 +744,13 @@ a.primary-btn{
     padding:7px 20px;
     text-align:center;
     display:inline-block;
-    color:#fff;
+    color:#ffffff;
     border-radius:2px;
     font-size:14px;
     margin-top:5px
 }
 a.primary-btn:hover{
-    background:#0da8e4;
+    background:#0de45c;
     color:#fff
 }
 

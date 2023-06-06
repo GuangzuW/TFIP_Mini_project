@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, lastValueFrom } from 'rxjs';
+import { Observable, Subscriber, lastValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../model/Product';
 import { ProductCategory } from '../model/ProductCategory';
@@ -9,6 +9,8 @@ import { ProductCategory } from '../model/ProductCategory';
   providedIn: 'root'
 })
 export class ProductService {
+  page = 1;
+  pageSize = 10;
 
   private baseUrl = 'http://localhost:8080/api';
 

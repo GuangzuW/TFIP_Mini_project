@@ -12,6 +12,9 @@ import { ProductService } from './services/product.service';
 import { ProductCategoryComponent } from './components/product-category/product-category.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductListComponent,
     ProductCategoryComponent,
     SearchComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,8 @@ import { ProductDetailsComponent } from './components/product-details/product-de
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
