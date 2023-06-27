@@ -15,6 +15,19 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { LoginStatusComponent } from './components/login-status/login-status.component';
+import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
+
+import { OktaAuth } from '@okta/okta-auth-js';
+
+import myAppConfig from './config/my-app-config';
+
+const oktaConfig = myAppConfig.oidc;
+
+const oktaAuth = new OktaAuth(oktaConfig);
 
 @NgModule({
   declarations: [
@@ -24,7 +37,10 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutComponent,
+    LoginComponent,
+    LoginStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -38,9 +54,11 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
       registrationStrategy: 'registerWhenStable:30000'
     }),
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule,
+    OktaAuthModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, { provide: OKTA_CONFIG, useValue: { oktaAuth }}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

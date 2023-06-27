@@ -19,5 +19,18 @@ public class EnableCors implements WebMvcConfigurer {
         registry.addMapping(path)
             .allowedOrigins(origins);
     }
+    // private String path;
+
+    // public EnableCors(String p) {
+    //     path = p;
+    // }
+
+    // @Override
+    // public void addCorsMappings(CorsRegistry registry) {
+    //     registry.addMapping(path)
+    //         .allowedOrigins("*")
+    //         .allowedMethods("*")
+    //         .allowedHeaders("*");
+    // }
     
 }

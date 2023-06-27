@@ -18,3 +18,64 @@ category_id INT NOT NULL,
 PRIMARY KEY (id),
 CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES product_category (id)
 );
+
+CREATE TABLE country (
+    id INT NOT NULL,
+    code VARCHAR(2) DEFAULT NULL,
+    name VARCHAR(100) DEFAULT NULL,
+    PRIMARY KEY (id)
+) ENGINE=InnoDB;
+
+CREATE TABLE state (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) DEFAULT NULL,
+    country_id INT NOT NULL,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_country FOREIGN KEY (country_id) REFERENCES country (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+
+CREATE TABLE address (
+  id INT NOT NULL AUTO_INCREMENT,
+  block_number VARCHAR(64) DEFAULT NULL,
+  street_name VARCHAR(128) DEFAULT NULL,
+  unit_number VARCHAR(64) DEFAULT NULL,
+  country VARCHAR(64) DEFAULT NULL,
+  post_code INT DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE customer (
+  id INT NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(128) DEFAULT NULL,
+  last_name VARCHAR(64) DEFAULT NULL,
+  email VARCHAR(255) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE orders (
+  id INT NOT NULL AUTO_INCREMENT,
+  order_tracking_number VARCHAR(255) DEFAULT NULL,
+  total_price DECIMAL(19,2) DEFAULT NULL,
+  total_quantity INT DEFAULT NULL,
+  customer_id INT DEFAULT NULL,
+  shipping_address_id INT DEFAULT NULL,
+  status VARCHAR(128) DEFAULT NULL,
+  date_created DATETIME(6) DEFAULT NULL,
+  last_updated DATETIME(6) DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_customer_id FOREIGN KEY (customer_id) REFERENCES customer (id),
+  CONSTRAINT FK_shipping_address_id FOREIGN KEY (shipping_address_id) REFERENCES address (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
+
+CREATE TABLE order_item (
+  id INT NOT NULL AUTO_INCREMENT,
+  image_url VARCHAR(255) DEFAULT NULL,
+  quantity INT DEFAULT NULL,
+  unit_price DECIMAL(19,2) DEFAULT NULL,
+  order_id INT DEFAULT NULL,
+  product_id INT DEFAULT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT FK_order_id FOREIGN KEY (order_id) REFERENCES orders (id),
+  CONSTRAINT FK_product_id FOREIGN KEY (product_id) REFERENCES product (id)
+) ENGINE=InnoDB AUTO_INCREMENT=1;
