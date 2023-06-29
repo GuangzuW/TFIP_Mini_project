@@ -24,6 +24,8 @@ import { OKTA_CONFIG, OktaAuthModule } from '@okta/okta-angular';
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import myAppConfig from './config/my-app-config';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { HistoryComponent } from './components/history/history.component';
 
 const oktaConfig = myAppConfig.oidc;
 
@@ -40,7 +42,9 @@ const oktaAuth = new OktaAuth(oktaConfig);
     CartDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    OrderHistoryComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

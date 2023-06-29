@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
+import ibf.miniproject.ecommerce.model.OrderHistory;
 import ibf.miniproject.ecommerce.model.Product;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
@@ -75,6 +76,23 @@ public class ProductUtils {
         return jsonArray;
     }
 
+
+    public static JsonArray orderHistoryToJson(List<OrderHistory> orderHistory){
+            
+            JsonArrayBuilder builder = Json.createArrayBuilder();
+            for(OrderHistory order : orderHistory){
+                builder.add(Json.createObjectBuilder()
+                    .add("orderId", order.getOrderId())
+                    .add("orderTrackingNumber", order.getOrderTrackingNumber())
+                    .add("customerName", order.getCustomerName())
+                    .add("productName", order.getProductName())
+                    .add("quantity", order.getQuantity())
+                );
+            }
+            JsonArray jsonArray = builder.build();
+    
+            return jsonArray;
+    }
 
 
     

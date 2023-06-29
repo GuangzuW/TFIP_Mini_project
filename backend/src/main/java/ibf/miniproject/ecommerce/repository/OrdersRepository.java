@@ -19,41 +19,10 @@ public class OrdersRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    // private Integer id;
-    // private String orderTrackingNumber;
-    // private Double totalPrice;
-    // private Integer totalQuantity;
-    // private Integer customerId;
-    // private String status;
-    // @CreationTimestamp
-    // private Date dateCreated;
-    // @UpdateTimestamp
-    // private Date lastUpdated;
-
 
     private static final String INSERT_SQL="insert into orders (order_tracking_number,total_price,total_quantity,customer_id,status, date_created, last_Updated) values (?,?,?,?,?,?,?)";
-
-    // public Integer createAddress(Address shippingAddress){
-    //     KeyHolder generatHolder = new GeneratedKeyHolder();
-    //     PreparedStatementCreator psc = new PreparedStatementCreator() {
-
-    //         @Override
-    //         public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
-    //             PreparedStatement ps = con.prepareStatement(INSERT_SQL, new String[] {"id"});
-    //             ps.setString(1, shippingAddress.getBlockNumber());
-    //             ps.setString(2, shippingAddress.getStreetName());
-    //             ps.setString(3, shippingAddress.getUnitNumber());
-    //             ps.setString(4, shippingAddress.getCountry());
-    //             ps.setInt(5, shippingAddress.getPostCode());
-    //             return ps;
-    //         }
-
-    //     };
-    //     jdbcTemplate.update(psc, generatHolder);
-    //     Integer returnedId = generatHolder.getKey().intValue();
-    //     return returnedId;
-        
-    // }
+ 
+    private static final String SELECT_SQL="SELECT o.order_tracking_number, c.email FROM orders o JOIN customer c ON o.customer_id = c.id";
 
     public Integer createOrder(Orders order){
         KeyHolder genratedHolder = new GeneratedKeyHolder();
@@ -76,6 +45,8 @@ public class OrdersRepository {
         Integer returnedId = genratedHolder.getKey().intValue();
         return returnedId;
     }
+
+    
 
     
 }

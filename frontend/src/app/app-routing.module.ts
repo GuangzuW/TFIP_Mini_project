@@ -7,9 +7,11 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OktaCallbackComponent } from '@okta/okta-angular';
 
 import { LoginComponent } from './components/login/login.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 
 const routes: Routes = [
+  {path: 'order-history', component: OrderHistoryComponent},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   { path: 'checkout', component: CheckoutComponent},

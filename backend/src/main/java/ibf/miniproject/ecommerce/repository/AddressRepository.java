@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ssl.SslBundleProperties.Key;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

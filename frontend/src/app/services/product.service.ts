@@ -4,6 +4,7 @@ import { Observable, Subscriber, lastValueFrom } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Product } from '../model/Product';
 import { ProductCategory } from '../model/ProductCategory';
+import { OrderHistory } from '../model/OrderHistory';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +52,13 @@ export class ProductService {
     const searchUrl = `${this.baseUrl}/products/search/findbynamecontains?name=${keyword}`;
     // return lastValueFrom(this.httpClient.get<Product[]>(searchUrl));
     return lastValueFrom(this.httpClient.get<Product[]>(`/api/products/search/findbynamecontains?name=${keyword}`));
+
+  }
+
+  getOrderHistory(): Promise<OrderHistory[]>{
+    const orderHistoryUrl = `${this.baseUrl}/api/orderhistory`;
+    // return lastValueFrom(this.httpClient.get<Product[]>(orderHistoryUrl));
+    return lastValueFrom(this.httpClient.get<OrderHistory[]>('/api/orderhistory'));
 
   }
 

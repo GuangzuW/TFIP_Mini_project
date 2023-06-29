@@ -64,7 +64,7 @@ public class CheckoutService {
         Address shippingAddress = purchase.getShippingAddress();
         Integer addressId = addressRepository.createAddress(shippingAddress);
         order.setShippingAddressId(addressId);
-        order.setShippingAddress(purchase.getShippingAddress());
+        //order.setShippingAddress(purchase.getShippingAddress());
 
         Customer customer = purchase.getCustomer();
         Integer custmerId = customerRepository.createCustomer(customer);

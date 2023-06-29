@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ibf.miniproject.ecommerce.ProductUtils;
+import ibf.miniproject.ecommerce.model.OrderHistory;
 import ibf.miniproject.ecommerce.model.Product;
+import ibf.miniproject.ecommerce.repository.OrderHistoryReopsitory;
 import ibf.miniproject.ecommerce.service.ProductService;
 
 @Controller
@@ -69,6 +71,18 @@ public class ProductController {
         System.out.println("Inside createProduct");
         Integer id = productSvc.createProduct(product);
         return ResponseEntity.ok().body("Product created with id: " + id);
+    }
+
+
+    @Autowired
+    OrderHistoryReopsitory orderHistoryRepo;
+
+    @GetMapping(path="/orderhistory", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> getOrderHistory(){
+        System.out.println("Inside getOrderHistory");
+        List<OrderHistory> orderHistory = new ArrayList<>();
+        orderHistory = orderHistoryRepo.getOrderHistory();
+        return ResponseEntity.ok().body(ProductUtils.orderHistoryToJson(orderHistory).toString());
     }
 
 
