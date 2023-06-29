@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <br>
-                                <a (click)="remove(item)" class="btn btn-primary btn-sm">Remove From My Cart</a>
+                                <a (click)="remove(item)" class="btn btn-danger btn-sm">Remove From My Cart</a>
                                
                             </div>
                         </td>
@@ -64,11 +64,12 @@
 </div>
 
 <ng-template #empty>
-    <div class="alert alert-warning col-md-12" role="alert">
-        <h1>I am empty. Get some itme from store and come back later......</h1>
+    <div>
+        
         <img src="/assets/cartempty.png" width="250">
         <img src="/assets/cartempty.png" width="200">
         <img src="/assets/cartempty.png" width="150">
         <img src="/assets/cartempty.png" width="100">
+        <h1>Your shopping cart is  empty. Get some item from store and come back later......</h1>
     </div>
   </ng-template>

@@ -52,7 +52,7 @@ public class AppConfig {
     @Bean
     public MongoTemplate createMongoTemplate() {
         MongoClient client = MongoClients.create(mongoUrl);
-        return new MongoTemplate(client, "yourdbname");
+        return new MongoTemplate(client, "commerce");
     }
     
 }

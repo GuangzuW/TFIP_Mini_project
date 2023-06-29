@@ -2,13 +2,21 @@ package ibf.miniproject.ecommerce.service;
 
 
 
+import ibf.miniproject.ecommerce.PurchaseUtils;
 import ibf.miniproject.ecommerce.model.Address;
 import java.util.UUID;
 
 import java.util.Set;
+
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
+
+import com.mongodb.client.result.UpdateResult;
 
 import ibf.miniproject.ecommerce.model.Customer;
 import ibf.miniproject.ecommerce.model.OrderItem;
@@ -38,6 +46,7 @@ public class CheckoutService {
 
     @Autowired
     private MongoTemplate template;
+
     private static final String COMMENTS_COL = "commerce";
 
     @Transactional
@@ -64,13 +73,29 @@ public class CheckoutService {
         
         ordersRepository.createOrder(order);
 
-       //template.insert(purchase, COMMENTS_COL);
-        
+        // Document doc= PurchaseUtils.toDocument(purchase, orderTrackingNumber);
+        // System.out.println("------------------");
+
+        // template.insert(doc, "COMMENTS_COL");
+
+
+        insertIntoMongoDB(purchase, orderTrackingNumber);
         return new PurchaseResponse(orderTrackingNumber);
     }
 
     private String generateOrderTrackingNumber() {
         return UUID.randomUUID().toString();
+    }
+
+    public void insertIntoMongoDB(Purchase purchase, String orderTrackingNumber){
+        Document doc = PurchaseUtils.toDocument(purchase, orderTrackingNumber);
+        Criteria criteria = Criteria.where("orderTrackingNumber").is(orderTrackingNumber);
+        Query query = Query.query(criteria);
+        Update updateOps = new Update().push("purchase", doc);
+        UpdateResult result = template.upsert(query, updateOps, Document.class,COMMENTS_COL);
+        System.out.printf("matched: %d\n", result.getMatchedCount());
+		System.out.printf("modified: %d\n", result.getModifiedCount());
+
     }
     
 }

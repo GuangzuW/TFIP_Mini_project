@@ -12,6 +12,7 @@ export class CheckoutService {
   constructor(private httpClient: HttpClient) { }
 
   placeOrder(purchase: Purchase){
-    return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
+    // return this.httpClient.post<Purchase>(this.purchaseUrl, purchase);
+    return this.httpClient.post<Purchase>("/api/checkout/purchase", purchase);
   }
 }
